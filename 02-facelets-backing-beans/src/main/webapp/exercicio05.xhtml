@@ -6,20 +6,21 @@
 
 	<h:head>
 		<meta charset="utf-8" />
-		<title>Exercício 03</title>
+		<title>Exercício 05</title>
 	</h:head>
 
 	<h:body>
-		<h3>Exercício 03</h3>
+		<h3>Exercício 05</h3>
 		
 		<h:form>
 			<h:panelGrid columns="2" style="margin-bottom: 20px">
-				<h:outputLabel for="mensagem">Mensagem:</h:outputLabel>
-				<h:inputText id="mensagem" value="#{exercicio03View.mensagem}" />
+				<h:outputLabel for="email">Email:</h:outputLabel>
+				<h:inputText id="email" 
+					value="#{exercicio05View.email}" />
 			</h:panelGrid>
 						
 			<h:commandButton value="Enviar"
-				action="#{exercicio03View.processa}">
+				action="#{exercicio05View.validaEmail}">
 				
 				<f:ajax execute="@form" render="saida" />
 			</h:commandButton>
@@ -27,7 +28,7 @@
 			<br/>
 			
 			<h:outputText id="saida" 
-				value="#{exercicio03View.saida}" />
+				value="#{exercicio05View.saida}" />
 		</h:form>
 		<br/>
 		
