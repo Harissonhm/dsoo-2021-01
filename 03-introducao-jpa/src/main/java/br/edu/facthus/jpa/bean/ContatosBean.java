@@ -24,7 +24,9 @@ public class ContatosBean {
 				.getResultList();
 		
 		for (Contato c : contatos)
-			System.out.println(c.getNome());
+			System.out.printf("Nome: %s - Email: %s\n",
+					c.getNome(),
+					c.getEmail());
 	}
 
 }
