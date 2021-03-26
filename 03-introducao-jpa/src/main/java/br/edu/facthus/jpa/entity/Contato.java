@@ -19,6 +19,8 @@ public class Contato implements Serializable {
 	private String nome;
 	
 	private String email;
+	
+	private String telefone;
 
 	public Integer getId() {
 		return id;
@@ -42,6 +44,14 @@ public class Contato implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 }

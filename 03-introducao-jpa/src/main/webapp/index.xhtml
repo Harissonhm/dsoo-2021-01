@@ -14,21 +14,22 @@
 	<h:messages id="messages" />
 
 	<h:form>
-			Nome: <h:inputText value="#{indexView.contato.nome}" />
-		<br />
-		<br />
-			
-			Email: <h:inputText value="#{indexView.contato.email}" />
-		<br />
-		<br />
+		<h:panelGrid columns="2">
+			<h:outputLabel for="nome" value="Nome:" /> 
+			<h:inputText id="nome" value="#{indexView.contato.nome}" />
+		
+			<h:outputLabel for="email" value="Email:" />			
+			<h:inputText id="email" value="#{indexView.contato.email}" />
+
+			<h:outputLabel for="telefone" value="Telefone:" />			
+			<h:inputText id="telefone" value="#{indexView.contato.telefone}" />
+		</h:panelGrid>
 
 		<h:commandButton value="Cadastrar" action="#{indexView.cadastra}">
-
 			<f:ajax execute="@form" render="messages" />
 		</h:commandButton>
 
-		<h:commandButton value="Listar" action="#{indexView.lista}">
-
+		<h:commandButton value="Listar" action="#{indexView.lista}" style="margin-left:20px">
 			<f:ajax execute="@form" render="messages tblContatos" />
 		</h:commandButton>
 		<br />
@@ -52,8 +53,12 @@
 				<f:facet name="header">E-mail</f:facet>
       			#{contato.email}
    			</h:column>
+   			
+   			<h:column>
+				<f:facet name="header">Telefone</f:facet>
+      			#{contato.telefone}
+   			</h:column>
 		</h:dataTable>
-
 	</h:form>
 </h:body>
 </html>
