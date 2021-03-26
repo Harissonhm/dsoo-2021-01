@@ -18,15 +18,10 @@ public class ContatosBean {
 		entityManager.persist(contato);
 	}
 	
-	public void lista() {
-		List<Contato> contatos =  entityManager
+	public List<Contato> lista() {
+		return entityManager
 				.createQuery("SELECT c FROM Contato c", Contato.class)
 				.getResultList();
-		
-		for (Contato c : contatos)
-			System.out.printf("Nome: %s - Email: %s\n",
-					c.getNome(),
-					c.getEmail());
 	}
 
 }

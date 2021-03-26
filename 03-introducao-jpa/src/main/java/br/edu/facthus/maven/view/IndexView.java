@@ -1,5 +1,8 @@
 package br.edu.facthus.maven.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -18,6 +21,8 @@ public class IndexView {
 	
 	private Contato contato = new Contato();
 	
+	private List<Contato> listaContatos = new ArrayList<Contato>();
+	
 	public void cadastra() {
 		contatosBean.cadastra(contato);
 		FacesContext.getCurrentInstance().addMessage(null, 
@@ -25,7 +30,10 @@ public class IndexView {
 	}
 	
 	public void lista() {
-		contatosBean.lista();
+		listaContatos = contatosBean.lista();
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(String.format("%d contato(s) encontrado(s).", 
+						listaContatos.size())));
 	}
 
 	public ContatosBean getContatosBean() {
@@ -42,6 +50,14 @@ public class IndexView {
 
 	public void setContato(Contato contato) {
 		this.contato = contato;
+	}
+
+	public List<Contato> getListaContatos() {
+		return listaContatos;
+	}
+
+	public void setListaContatos(List<Contato> listaContatos) {
+		this.listaContatos = listaContatos;
 	}
 		
 }
