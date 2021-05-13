@@ -5,15 +5,16 @@
 
 <h:head>
 	<meta charset="utf-8" />
-	<title>Introdução à JPA</title>
+	<title>Introdução ao ORM</title>
 </h:head>
 
 <h:body>
-	<h3>Introdução à JPA</h3>
+	<h3>Introdução ao ORM</h3>
 
 	<h:messages id="messages" />
 
 	<h:form>
+		<h4>Cadastro</h4>
 		<h:panelGrid columns="2">
 			<h:outputLabel for="nome" value="Nome:" /> 
 			<h:inputText id="nome" value="#{indexView.contato.nome}" />
@@ -26,16 +27,33 @@
 		</h:panelGrid>
 
 		<h:commandButton value="Salvar" action="#{indexView.salva}">
-			<f:ajax execute="@form" render="messages" />
-		</h:commandButton>
-
-		<h:commandButton value="Listar" action="#{indexView.lista}" style="margin-left:20px">
-			<f:ajax execute="@form" render="messages tblContatos" />
+			<f:ajax execute="@form" render="messages @form" />
 		</h:commandButton>
 		
 		<br />
 		<br />
-
+		
+		<h4>Pesquisa</h4>
+		<h:panelGrid columns="2">
+			<h:outputLabel for="nomePesquisa" value="Nome:" /> 
+			<h:inputText id="nomePesquisa" value="#{indexView.nomePesquisa}" />
+		
+			<h:commandButton value="Pesquisar" 
+				action="#{indexView.pesquisa}">
+				<f:ajax execute="@form" 
+					render="messages tblContatos" />
+			</h:commandButton>
+		
+			<h:commandButton value="Listar todos" 
+				action="#{indexView.lista}" style="margin-left:20px">
+				<f:ajax execute="@form" 
+					render="messages tblContatos" />
+			</h:commandButton>
+		</h:panelGrid>
+		
+		<br/>
+		<br/>
+		
 		<h:dataTable id="tblContatos" 
 			value="#{indexView.listaContatos}" 
 			var="contato">
@@ -67,7 +85,12 @@
 					<f:ajax execute="@form" 
 						render="@form" />
 				</h:commandButton>
-
+				
+				<h:commandButton value="Remover" 
+					action="#{indexView.remove(contato)}">
+					<f:ajax execute="@form" 
+						render="@form messages" />
+				</h:commandButton>
    			</h:column>
 		</h:dataTable>
 	</h:form>

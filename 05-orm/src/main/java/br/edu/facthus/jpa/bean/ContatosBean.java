@@ -29,9 +29,26 @@ public class ContatosBean {
 		entityManager.merge(contato);
 	}
 	
+	// Delete
+	public void remove(Contato contato) {
+		Contato c = entityManager.find(Contato.class, contato.getId());
+		
+		if (c != null)
+			entityManager.remove(c);
+	}
+	
 	public List<Contato> lista() {
 		return entityManager
 				.createQuery("SELECT c FROM Contato c", Contato.class)
+				.getResultList();
+	}
+	
+	public List<Contato> buscaPorNome(String nome) {
+		return entityManager
+				.createQuery("SELECT c "
+						+ "FROM Contato c "
+						+ "WHERE UPPER(c.nome) LIKE :nome", Contato.class)
+				.setParameter("nome", String.format("%%%s%%", nome.toUpperCase()))
 				.getResultList();
 	}
 
